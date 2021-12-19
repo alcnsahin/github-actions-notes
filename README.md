@@ -1454,3 +1454,21 @@ git push origin v1 --force
 
 ### Slack Message Builder
 - https://app.slack.com/block-kit-builder
+
+### Git Commit
+```
+feat: add hat wobble
+^ — ^ ^ — — — — — — ^
+| |
+| +-> Summary in present tense.
+|
++ — — — -> Type: chore, docs, feat, fix, refactor, style, or test.
+```
+
+- __feat__: (new feature for the user, not a new feature for build script)
+- __fix__: (bug fix for the user, not a fix to a build script)
+- __docs__: (changes to the documentation)
+- __style__: (formatting, missing semi colons, etc; no production code change)
+- __refactor__: (refactoring production code, eg. renaming a variable)
+- __test__: (adding missing tests, refactoring tests; no production code change)
+- __chore__: (updating grunt tasks etc; no production code change)
