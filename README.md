@@ -2,7 +2,7 @@
 
 __.github/workflows/test.yml__
 
-```
+```yaml
 name: shell commands
 on: [push]
 jobs:
@@ -32,7 +32,7 @@ jobs:
 ```
 
 __.github/workflows/actions.yml__
-```
+```yaml
 name: Actions Workflow
 on: [push]
 jobs:
@@ -71,7 +71,7 @@ uses: kısmında action belirtilir. bu localde (./test-action.yml) bulunan bir a
 Projenin settings bölümünden secrets eklenebilir.
 Eğer debug etmek istiyorsa aşağıdaki 2 key'i secret'a eklemeliyiz.
 
-```
+```shell
 ACTIONS_RUNNER_DEBUG=true
 ACTIONS_STEP_DEBUG=true
 ```
@@ -89,15 +89,15 @@ https://docs.github.com/en/actions/managing-workflow-runs#enabling-debug-logging
 
 
 __actions.yml:__
-```
+```yaml
 name: Actions Workflow
 ```
 1-
-```
+```yaml
 on: [push, pull_request]
 ```
 2-
-```
+```yaml
 on:
   push:
     pull_request:
@@ -107,7 +107,7 @@ on:
 # Setting a Schedule to Trigger Workflows
 
 __actions.yml:__
-```
+```yaml
 name: Actions Workflow
 on: 
   schedule:
@@ -120,7 +120,7 @@ __crontab.guru__'dan schedule ayarlayabilirsin.
 
 
 ## Triggering Workflows Manually Using the Repository Dispatch Event
-```
+```yaml
 on: 
   repository_dispatch:
     types: [build]
@@ -132,7 +132,7 @@ steps:
 ```
 
 __HTTP METHOD:__
-```
+```yaml
 [POST]
 https://api.github.com/repos/alcnsahin/drmon-frontend/dispatch
 Headers:
@@ -153,7 +153,7 @@ response: 204
 ## Filtering Workflows by Branches, Tags & Paths
 
 __actions.yml:__
-```
+```yaml
 name: Actions Workflow
 on:
   push:
@@ -182,7 +182,7 @@ on:
 - https://docs.github.com/en/actions/learn-github-actions/environment-variables
 
 __.github/workflows/env.yml:__
-```
+```yaml
 name: ENV Vars
 on: push
 env:
@@ -230,7 +230,7 @@ jobs:
 go to github repo -> settings -> secrets -> add a new secret -> for example: WF_ENV: "a secret token"
 
 __.github/workflows/env.yml:__
-```
+```yaml
 name: ENV Vars
 on: push
 env:
@@ -240,7 +240,7 @@ env:
 
 ### Using the GITHUB_TOKEN Secret for Authentication
 - https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-```
+```yaml
 steps:
   - name: push a file to your repository
     run: |
@@ -268,7 +268,7 @@ steps:
 - https://docs.github.com/en/actions/learn-github-actions/contexts
 
 __.github/workflows/main.yml__
-```
+```yaml
 on: push
 jobs:
   one:
@@ -308,7 +308,7 @@ jobs:
 - endsWith()
 - format()
 
-```
+```yaml
 jobs:
   functions:
     runs-on: ubuntu-16.04
@@ -327,7 +327,7 @@ jobs:
 ### The if key & Job Status Check Functions
 - https://docs.github.com/en/actions/learn-github-actions/contexts#job-status-check-functions
 
-```
+```yaml
 name: if
 on: [push, pull_request]
 jobs:
@@ -349,7 +349,7 @@ jobs:
 ## Bölüm 4 - Using Strategy, Matrix & Docker Containers in Jobs
 
 ### Continue on Error & Timeout Minutes
-```
+```yaml
 name: if
 on: [push, pull_request]
 jobs:
@@ -365,7 +365,7 @@ jobs:
 ### Using the setup-node Action
 - https://github.com/actions/setup-node
 
-```
+```yaml
 name: Matrix
 on: push
 
@@ -384,7 +384,7 @@ jobs:
 
 ### Creating a Matrix for Running a Job with Different Environments
 
-```
+```yaml
 name: Matrix
 on: push
 
@@ -409,7 +409,7 @@ jobs:
 ```
 
 ### Including & Excluding Matrix Configurations
-```
+```yaml
 jobs: 
   node-version:
     strategy:
@@ -443,7 +443,7 @@ jobs:
 ### Using Docker Container in Jobs
 
 __.github/workflows/container.yml__
-```
+```yaml
 name: Container
 on: push
 
@@ -472,7 +472,7 @@ jobs:
 ### Running Multiple Docker Services in Our Workflows
 
 __.github/workflows/container.yml__
-```
+```yaml
 name: Container
 on: push
 
@@ -498,7 +498,7 @@ jobs:
 ### Running Docker Containers in Individual Steps
 
 __.github/workflows/container.yml__
-```
+```yaml
 name: Container
 on: push
 
@@ -542,7 +542,7 @@ jobs:
 ### Creating our Own Executable File and Running it in our Steps
 
 __script.sh:__
-```
+```shell
 #!/bin/sh
 echo $1 $2
 echo "Hello World"
@@ -551,7 +551,7 @@ echo "Hello World"
 before to push the script --> chmod +x script.sh  
 
 __.github/workflows/container.yml__
-```
+```yaml
 name: Container
 on: push
 
@@ -601,7 +601,7 @@ jobs:
 - https://hub.docker.com/r/technosophos/slack-notify/
 
 __.github/workflows/container.yml__
-```
+```yaml
 name: Container
 on: push
 
@@ -659,14 +659,18 @@ jobs:
 - https://create-react-app.dev/
 
 ### Creating a TypeScript App
-``` npx create-reactt-app my-app --template typescript```
+```shell
+npx create-reactt-app my-app --template typescript
+```
 
 ### Selecting a package manager
-``` npx create-react-app my-app --use-npm ```
+```shell
+npx create-react-app my-app --use-npm
+```
 
 ### Building & Testing the Application Locally
 
-```
+```shell
 CI=true npm run test
 CI=true npm run test -- --coverage 
 CI=true npm run build
@@ -676,16 +680,20 @@ CI=true npm run build
 
 Surge: Static web publishing for front-end developers
 
-``` npm install --global surge ```
+```shell
+npm install --global surge
+```
 
 In your project root directory, just run the following command;
 
-``` surge ```
+```shell
+surge
+```
 
 ### Using Prettier to Check for Code Formatting Rules
 - https://prettier.io/
 
-```
+```shell
 npm install --save-dev --save-exact prettier
 npx prettier --check "**/*.js"
 npx prettier --write "**/*.js"
@@ -728,7 +736,7 @@ __Workflow 3 Steps__
 
 ### Setting Up Our Repository
 
-```
+```shell
 git init
 git add -A
 git commit -m"init"
@@ -743,17 +751,17 @@ git push -u origin master
 npm install yerine npm ci komutu da kullanılabilir. Aşağıdaki dökümana bak;<br>
 https://docs.npmjs.com/cli/v8/commands/npm-ci
 
-```
+```shell
 git fetch
 ```
 
 ### create a new branch named workflow
-```
+```shell
 git checkout -b workflow
 ```
 
 __.github/workflows/ci.yml:__
-```
+```yaml
   name: CI
   on:
     pull_request:
@@ -776,7 +784,7 @@ __.github/workflows/ci.yml:__
           #   CI: true
 ```
 
-```
+```shell
 git add -A
 git commit -m"wf"
 git push --set-upstream origin workflow
@@ -784,7 +792,7 @@ git push --set-upstream origin workflow
 
 ### Creating the Develop Merge Pull Request Workflow
 
-```
+```yaml
   name: CI
   on:
     pull_request:
@@ -831,7 +839,7 @@ __Caching:__
 __Cache Action:__
 - https://github.com/actions/cache
 
-```
+```yaml
   name: CI
   on:
     pull_request:
@@ -879,7 +887,7 @@ __Özetle;__
 - Artifact download edilir
 - Bu işlemler github actions libs ile yapldı.
 
-```
+```yaml
         - name: build project
           if: github.event_name == 'push'
           run: npm run build
@@ -896,14 +904,14 @@ __Özetle;__
 ### Semantic Versioning & Conventional Commits
 
 - Semantic Versioning: __x.y.z__ (örn: 2.1.3) (https://semver.org/)
-```
+```text
   x: Major Version (breaking changes)
   y: Minor Version (new features, non-breaking functionality)
   z: Patch Version (bug fixes)
 ```
 
 - Conventional Commits: 
-```
+```textmate
   <type>[optional scope]:<description>
   (https://www.conventionalcommits.org/en/v1.0.0/)
   [optional body]
@@ -911,7 +919,7 @@ __Özetle;__
 ```
 
 Examples:
-```
+```text
 1-
 fix(card):change card endpoint
 BREAKNG CHANGE: changed card endpoint
@@ -928,12 +936,12 @@ style: updated documentation styles
 - https://github.com/semantic-release/semantic-release
 - https://semantic-release.gitbook.io/semantic-release/
 
-```
+```shell
 npm install --save-dev semantic-release
 ```
 
 __release.config.js:__
-```
+```javascript
 module.exports = {
     branches: "master",
     repositoryUrl: "https://github.com/alcnsahin/endikasyonlar-frontend",
@@ -948,7 +956,7 @@ module.exports = {
 Semantic versiyonlama sadece master'a merge edildiğinde çalışacak. Bu sebeple ci.yml aşağıdaki şekilde güncellendi.
 
 __.github/workflows/ci.yml:__
-```
+```yaml
   name: CI
   on:
     pull_request:
@@ -997,7 +1005,7 @@ __.github/workflows/ci.yml:__
         # run: deploy to test server / kubernetes or etc...
 ```
 
-```
+```shell
 $ git commit -m"asd"
 $ #git reset HEAD~
 $ #git rm -r --cached .husky
@@ -1010,7 +1018,7 @@ $ git push
 ### Uploading Release Assets
 
 __release.config.js:__
-```
+```javascript
 module.exports = {
     branches: "master",
     repositoryUrl: "https://github.com/alcnsahin/endikasyonlar-frontend",
@@ -1027,7 +1035,7 @@ module.exports = {
 ```
 
 __ci.yml:__
-```
+```yaml
 - name: ZIP Artifacts
   if: github.event_name == 'push' && github.ref == 'refs/heads/master'
   run: |
@@ -1043,7 +1051,7 @@ __ci.yml:__
 
 
 ### Deploying to Production when Pushing to Master
-```
+```shell
 if: github.event_name == 'push' && github.ref == 'refs/heads/master' run: deploy to kubernetes or etc...(https://surge.sh/)
 ```
 
@@ -1061,7 +1069,7 @@ Test sonucunda çıkan istatistik ve raporlarını codecov'a gönderip analiz ed
 CommitLint ve Husky kullanacağız:
 
 Kurulum:
-```
+```shell
 $ npm install --save-dev @commitlint/{config-conventional,cli} husky
 $ echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 $ npx husky install
@@ -1073,7 +1081,7 @@ $ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
 get webhook
 
 ### Adding a Status Badge in README.md
-```
+```markdown
 ![](https://github.com/alcnsahin/drmon-frontend/workflows/CI/badge.svg?branch=develop&event=push)
 ```
 
@@ -1083,13 +1091,13 @@ get webhook
 
 __Installation:__
 - https://github.com/actions/toolkit
-```
+```shell
 $ npm install @actions/core
 $ npm install @actions/github
 ```
 
 __.github/actions/hello/action.yml:__
-```
+```yaml
 name: Hello World
 author: Alican Sahin
 description: Some description
@@ -1107,7 +1115,7 @@ runs:
 ```
 
 __.github/actions/hello/index.js:__
-```
+```javascript
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -1126,7 +1134,7 @@ console.log(JSON.stringify(github, null, '\t'));
 ```
 
 __.github/workflow/custom-action.yml:__
-```
+```yaml
 on: push
 jobs: 
   testing-action:
@@ -1143,19 +1151,19 @@ jobs:
 
 ### Bundling Our Javascript Code into 1 File
 __Installation:__
-```
+```shell
 npm i -D @zeit/ncc
 ```
 
 __Compile:__
-```
+```shell
 npx ncc build .github/actions/hello/index.js -o .github/actions/hello/dist/
 ```
 
 ### Let's Discover More About the @github/core Package
 - https://github.com/actions/toolkit/tree/master/packages/core
 
-```
+```javascript
 const core = require("@actions/core");
 
 core.debug("Debug message");
@@ -1197,7 +1205,7 @@ jobs:
 - https://octokit.github.io/rest.js/v18#issues
 
 __.github/actions/issues/action.yml:__
-```
+```yaml
 name: Open Github Issues
 author: alcnsahin
 description: Opens a github issue
@@ -1221,7 +1229,7 @@ runs:
 ```
 
 __.github/actions/issues/index.js:__
-```
+```javascript
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -1254,7 +1262,7 @@ run();
 
 
 __.github/workflow/issues-action.yml:__
-```
+```yaml
 on: push
 jobs: 
   testing-action:
@@ -1278,7 +1286,7 @@ jobs:
           echo "Time: ${{ steps.hello.outputs.time }}"
 ```
 
-```
+```shell
 npx ncc build .github/actions/issue/index.js -o .github/actions/issue/dist
 ```
 
@@ -1287,7 +1295,7 @@ npx ncc build .github/actions/issue/index.js -o .github/actions/issue/dist
 - https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions
 
 __.github/actions/hello-docker/action.yml:__
-```
+```yaml
 name: Open Github Issues
 author: alcnsahin
 description: Opens a github issue
@@ -1314,7 +1322,7 @@ runs:
 
 
 __.github/actions/hello-docker/Dockerfile__
-```
+```dockerfile
 FROM alpine:3.11
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
@@ -1322,7 +1330,7 @@ CMD ['']
 ```
 
 __.github/actions/hello-docker/entrypoint.sh__
-```
+```shell
 #!/bin/sh -l
 
 #if [ true ]
@@ -1350,7 +1358,7 @@ echo "HELLO=hello" >> $GITHUB_ENV
 ```
 
 __.github/actions/hello-docker/index.js:__
-```
+```javascript
 const core = require("@actions/core");
 
 core.debug("Debug message");
@@ -1372,7 +1380,7 @@ core.exportVariable('HELLO', 'Hello World');
 
 
 .github/workflow/hello-docker.yml:
-```
+```yaml
 on: push
 jobs: 
   testing-action:
@@ -1388,7 +1396,7 @@ jobs:
           echo $HELLO
 ```
 
-```
+```shell
 $ chmod +x .github/actions/hello-docker/entrypoint.sh
 $ npx ncc build .github/actions/hello-docker/index.js -o .github/actions/hello-docker/dist
 ```
@@ -1404,14 +1412,14 @@ __Steps__:
 - set repo name and fill the others
 - git clone your new repo to local machine
 - open the project in IDE
-```
+```shell
 $ npm install
 ```
 
 Action'a icon eklemek için feathericons'dan icon seç ve adını branding'e yaz. Aşağıdaki yaml'da en alt satırı incele.
 
 __.github/actions/issues/action.yml:__
-```
+```yaml
 name: Open Github Issues
 author: alcnsahin
 description: Opens a github issue
@@ -1447,7 +1455,7 @@ branding:
 - versiyonlarken v1.0.0 verildiyse action çağırılırken aynı şekilde tag girilmeli aksi taktirde workflow hata alır
 - bunu önlemek için aşağıdaki adımlarla v1.0.0 versiyonu v1 şeklinde tekrar taglenir.
 
-```
+```shell
 git tag -fa -v1 -m "Update v1 tag"
 git push origin v1 --force
 ```
@@ -1456,7 +1464,7 @@ git push origin v1 --force
 - https://app.slack.com/block-kit-builder
 
 ### Git Commit
-```
+```text
 feat: add hat wobble
 ^ — ^ ^ — — — — — — ^
 | |
